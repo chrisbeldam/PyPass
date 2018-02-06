@@ -1,6 +1,8 @@
 from random import choice
 from string import ascii_uppercase, digits
 
+import os
+
 # ask user if they want to generate a new password
 def generate_password():
     new_pass_gen = input("Do you wish to generate a password?(Y/N): ").upper()
@@ -22,17 +24,19 @@ def generate_password():
             view_current_passwords()
         more_passwords = input("Do you wish to create another password?(Y/N): ").upper()
         if more_passwords == "Y":
+            os.system('clear') #Clears screen for mac and linux terminals
             generate_password()
     else:
         view_current_passwords()
 
 def write_password_to_file(new_password, assignment):
-    with open('passwords.txt', 'w') as password:
+    with open('passwords.txt', 'a+') as password:
         password.write(new_password + '-' + assignment + '\n')
 
 def view_current_passwords():
     file = open('passwords.txt', 'r')
     print("Here is a list of your current passwords" + "\n")
     print(file.read())
+    file.close()
 
 generate_password()
