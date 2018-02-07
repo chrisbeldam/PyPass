@@ -29,6 +29,8 @@ def generate_password():
         else:
             os.system("cls")
             generate_password()
+    else:
+        print("###### Quiting PyPass manager ######")
         
 def write_password_to_file(new_password, assignment_name):
     with open("passwords.txt", "a+") as password:
